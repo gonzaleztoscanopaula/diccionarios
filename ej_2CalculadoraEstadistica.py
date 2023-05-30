@@ -10,17 +10,19 @@
 #luego imprimir los resultados de los cálculos estadísticos.
 
 
-def agregar_numeros():
-    numeroUsuario = input("Ingrese la lista de números separados por espacios: ")
-    numeros = [int(num) for num in numeroUsuario.split()]
-    print(f"Los números ingresados son: {numeros}")
-    return numeros
+import math
+numeroUsuario = input("Ingrese la lista de números separados por espacios: ")
+numeros = [int(num) for num in numeroUsuario.split()]
+print(f"Los números ingresados son: {numeros}")
+numeros =list(numeros)
 
 def calcular_suma():
     suma=0
     for num in numeros:
         suma=int(suma+int(num))
     print(f"La suma de los números ingresados es {suma}")
+    return suma
+
 
 def encontrar_numeroMinMax():
     numMax=0
@@ -32,8 +34,9 @@ def encontrar_numeroMinMax():
             numMin=num
     print(f"El numero mínimo es:  {numMin}")
     print(f"El numero máximo es:  {numMax}")
+    return numMax, numMin
 
-def promedioNum():
+def promedio_Num():
     suma=0
     c=0
     promedioNum=0
@@ -42,30 +45,42 @@ def promedioNum():
         c=c+1
         promedioNum=(suma/c)
     print(f"El promedio de los números es: {promedioNum}")
+    return promedioNum
 
 
-numeros =[]
+def calcularLaDesviacionEstandar():
+    media = sum(numeros) / len(numeros)
+    suma_cuadrados = sum((x - media) ** 2 for x in numeros)
+    desviacion_estandar = math.sqrt(suma_cuadrados / len(numeros)) #math.sqrt se utiliza para calcular la raíz cuadrada y se aplica a la expresión correspondiente para obtener el valor final de la desviación estándar.
+    print(f"La desviacion estandar de los numeros es: {desviacion_estandar}")
+    return desviacion_estandar
+
 
 while True:
     print("\n--- Calculadora ---")
-    print("1. Agregar 10 números")
-    print("2. Calcular la suma de los números")
+    print("1. Calcular la suma de los números")
+    print("2. Calcular el promedio de los números")
     print("3. Encontrar numero máximo y mínimo")
-    print("4. Calcular el promedio de los números")
-    print("5. Salir")
+    print("4. Calcular la desviación estandar de los números")
+    print("5. Obtener resultados calculados y salir")
 
     opcion = input("Ingrese una opción: ")
 
     if opcion == "1":
-        numeros=agregar_numeros()
-    elif opcion == "2":
         calcular_suma()
+    elif opcion == "2":
+        promedio_Num()
     elif opcion == "3":
         encontrar_numeroMinMax()
     elif opcion == "4":
-        promedioNum()
+        calcularLaDesviacionEstandar()
     elif opcion == "5":
-        print("¡Hasta la vista baby!")
+        print("-----RESULTADOS-----")
+        calcular_suma()
+        encontrar_numeroMinMax()
+        promedio_Num()
+        calcularLaDesviacionEstandar()
+        print("-----¡Gracias por utilizar el programa!-----")
         break
     else:
         print("Opción inválida. Por favor, ingrese un número válido del menú.")
