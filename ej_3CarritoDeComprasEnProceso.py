@@ -1,6 +1,6 @@
 
 productos = {
-    "producto1": {
+    "001": {
         "codigo_producto": "001",
         "nombre_producto": "Camiseta",
         "marca_producto": "Nike",
@@ -9,7 +9,7 @@ productos = {
         "color_producto": "Negro",
         "caracteristicas_producto": "Algodón 100%, talla M"
     },
-    "producto2": {
+    "002": {
         "codigo_producto": "002",
         "nombre_producto": "Pantalón",
         "marca_producto": "Adidas",
@@ -18,7 +18,7 @@ productos = {
         "color_producto": "Azul",
         "caracteristicas_producto": "Poliéster, talla L"
     },
-    "producto3": {
+    "003": {
         "codigo_producto": "003",
         "nombre_producto": "Zapatos",
         "marca_producto": "Puma",
@@ -26,12 +26,34 @@ productos = {
         "stock_producto": 20,
         "color_producto": "Blanco",
         "caracteristicas_producto": "Cuero genuino, talla 42"
-    }
+    },
+    "004": {
+        "codigo_producto": "004",
+        "nombre_producto": "Pan",
+        "marca_producto": "Bimbito",
+        "precio_producto": 100,
+        "stock_producto": 20,
+        "color_producto": "negro",
+        "caracteristicas_producto": "Con moho, vencido por un día"
+    },
+    "005": {
+        "codigo_producto": "005",
+        "nombre_producto": "Huevos",
+        "marca_producto": "Gallina bajo el capitalismo",
+        "precio_producto": 5000,
+        "stock_producto": 500,
+        "color_producto": "color",
+        "caracteristicas_producto": "No son granja feliz, buenos para las tortillas"
+    }       
 }
 
 def codigo():
     codigo_producto= input("Ingrese el codigo numerico del producto... " )
     opcion=input(f"El codigo ingresado es {codigo_producto}, si desea modificarlo presione ( n ), de lo contrario enter")
+    if codigo_producto in productos:     
+        print("Codigo repetido por favor ingrese otro")
+        input("Presione enter para continuar...")
+        return  codigo()
     if opcion.lower() == "n":
         print("Vuleva a ingresar el codigo del producto...")       
         return codigo()
@@ -125,6 +147,38 @@ def agregar_productos():
     }
     productos[nuevo_producto["codigo_producto"]] = nuevo_producto
 
+#Presentar un menú con las siguientes opciones:						
+#2)Mostrar información breve del producto: Muestra el código del producto, nombre, precio y cantidad disponible de cada producto en la tienda.
+#3)Buscar producto por código: Permite al usuario ingresar un código de producto y muestra la información detallada de ese producto.
+#4)Realizar compra: Permite al usuario agregar productos al carrito de compras. Se generará un nuevo diccionario con el nombre del producto, la cantidad comprada, el precio unitario y el costo total por cada item añadido.
+#5)Finalizar compra: Cierra la compra y muestra un detalle de los productos comprados, incluyendo el nombre, la cantidad, el precio unitario y el costo total.
+#6)Salir: Permite al usuario salir del programa.
 
 
-agregar_productos()
+print("Bienvenido a la tienda del Saladillo, tenemos de lo más común a lo mas rarillo")
+print("Seleccione una opcion")
+print("1) Mostrar productos en detalle")
+print("2) Mostrar información breve del producto")
+print("3) Buscar producto por código")
+print("4) Realizar compra")
+print("5) Finalizar compra")
+print("6) Salir")
+
+opcion = input("Ingrese una opcion [1 o 6]: ")
+opcion = int(opcion)
+if opcion == 1:
+    print("Mostrar productos en detalle")
+    for producto in productos:
+        print(f" \n {productos[producto]} \n ")
+if opcion == 2:
+    print("Mostrar información breve del producto")
+    for producto in productos:
+        print(f" \n {productos[producto]['codigo_producto']} \n {productos[producto]['nombre_producto']} \n {productos[producto]['precio_producto']} \n {productos[producto]['stock_producto']} \n ")
+if opcion == 3:
+    print("Buscar producto por código")
+    codigo_producto= input("Ingrese el codigo numerico del producto... " )
+    if codigo_producto in productos:
+        print(f" \n {productos[codigo_producto]} \n ")
+    else:
+        print("El codigo ingresado no existe")
+
