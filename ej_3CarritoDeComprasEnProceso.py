@@ -133,8 +133,11 @@ def caracteristicas():
         caracteristicas_producto.lower
         return caracteristicas_producto
 
-
+#Funcion de agregar productos
 def agregar_productos():
+    opcion= input("Usted selecciono la opcion 1 del menu... Si desea salir presione ( n ) de lo contrario enter")
+    if opcion == "n":
+        return menu()
     print("Agregue sus nuevos productos...")
     nuevo_producto = {
         "codigo_producto": codigo(),
@@ -155,30 +158,23 @@ def agregar_productos():
 #6)Salir: Permite al usuario salir del programa.
 
 
-print("Bienvenido a la tienda del Saladillo, tenemos de lo más común a lo mas rarillo")
-print("Seleccione una opcion")
-print("1) Mostrar productos en detalle")
-print("2) Mostrar información breve del producto")
-print("3) Buscar producto por código")
-print("4) Realizar compra")
-print("5) Finalizar compra")
-print("6) Salir")
 
-opcion = input("Ingrese una opcion [1 o 6]: ")
-opcion = int(opcion)
-if opcion == 1:
-    print("Mostrar productos en detalle")
-    for producto in productos:
-        print(f" \n {productos[producto]} \n ")
-if opcion == 2:
-    print("Mostrar información breve del producto")
-    for producto in productos:
-        print(f" \n {productos[producto]['codigo_producto']} \n {productos[producto]['nombre_producto']} \n {productos[producto]['precio_producto']} \n {productos[producto]['stock_producto']} \n ")
-if opcion == 3:
-    print("Buscar producto por código")
-    codigo_producto= input("Ingrese el codigo numerico del producto... " )
-    if codigo_producto in productos:
-        print(f" \n {productos[codigo_producto]} \n ")
-    else:
-        print("El codigo ingresado no existe")
 
+def menu():
+
+    while True:
+        print("Bienvenido al mercadito del Saladillo")
+        print("Aqui puede encontrar desde lo más común a lo mas rarillo")
+        input("Presione enter para continuar...")
+        print("Seleccione una opcion")
+        print("1) Agregar productos")
+        print("2) Mostrar informacion breve del producto")
+        print("3) Buscar producto por codigo")
+        print("4) Realizar compra")
+        print("5) Finalizar compra")
+        print("6) Salir")
+        opcion = input("Ingrese una opcion: ")
+        print("Usted selecciono la opcion: " + opcion)
+        opcion= input("Quiere modificar su opción? Presione ( n ) de lo contrario enter")
+        if opcion == "1":
+            agregar_productos()
