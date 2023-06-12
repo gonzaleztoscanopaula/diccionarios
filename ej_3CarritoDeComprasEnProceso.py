@@ -177,4 +177,4 @@ def menu():
         print("Usted selecciono la opcion: " + opcion)
         opcion= input("Quiere modificar su opción? Presione ( n ) de lo contrario enter")
         if opcion == "1":
-            agregar_productos()
+            agregar_productos() #falta terminar
